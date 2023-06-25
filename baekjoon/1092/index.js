@@ -22,11 +22,28 @@ const boxList = input[3]
 
 let answer = 0;
 let count = 0;
+const isVisited = new Array(boxList.length).fill(false);
+const cranePosition = new Array(craneList.length).fill(0);
 
 if (boxList[0] > craneList[0]) return console.log(-1);
 
-while(true) {
+while (true) {
   if (count === boxNumber) break;
 
-  for 
+  for (let i = 0; i < craneList.length; i++) {
+    while (cranePosition[i] < boxList.length) {
+      if (
+        !isVisited[cranePosition[i]] &&
+        boxList[cranePosition[i]] <= craneList[i]
+      ) {
+        isVisited[cranePosition[i]] = true;
+        cranePosition[i] += 1;
+        count++;
+        break;
+      }
+      cranePosition[i] += 1;
+    }
+  }
+  answer++;
 }
+console.log(answer);
