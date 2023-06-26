@@ -19,10 +19,10 @@ class MinHeap {
     return parentIndex * 2;
   }
 
-  swap(element1, element2) {
-    [this.heap[element1], this.heap[element2]] = [
-      this.heap[element2],
-      this.heap[element1],
+  swap(element1Index, element2Index) {
+    [this.heap[element1Index], this.heap[element2Index]] = [
+      this.heap[element2Index],
+      this.heap[element1Index],
     ];
   }
 
@@ -35,44 +35,45 @@ class MinHeap {
     let index = this.getSize() - 1;
     if (index === 0) return;
 
-    let parentIndex = this.getParentNodeIndex(index);
-
-    while (parentIndex > 0) {
-      console.log(index, parentIndex);
+    while (index > 0) {
+      let parentIndex = this.getParentNodeIndex(index);
       if (this.heap[parentIndex] > this.heap[index]) {
-        console.log(this.heap);
-
         this.swap(parentIndex, index);
-        console.log(this.heap);
       } else {
         break;
       }
-      parentIndex = index;
       index = parentIndex;
     }
   }
 
-  pop() {}
+  pop() {
+    if (this.getSize() <= 2) return this.heap.pop();
 
-  heapifyUp() {}
+    // 맨 처음것과 맨 마지막 요소 swap
+    this.swap(0, this.getSize() - 1);
+    const value = this.heap.pop();
+
+    let index = 0;
+    while (true) {
+      if (
+        this.heap[this.getLeftChildIndex(index)] >
+        this.heap[this.getRightChildIndex(index)]
+      ) {
+        if (this.heap[index] > this.heap[this.getRightChildIndex(index)]) {
+          this.swap(index, this.getRightChildIndex(index));
+          index = this.getRightChildIndex(index);
+        } else {
+          break;
+        }
+      } else {
+        if (this.heap[index] > this.heap[this.getLeftChildIndex(index)]) {
+          this.swap(index, this.getLeftChildIndex(index));
+          index = this.getLeftChildIndex(index);
+        } else {
+          break;
+        }
+      }
+    }
+    return value;
+  }
 }
-
-const heap = new MinHeap();
-
-heap.insert(12);
-heap.print();
-
-heap.insert(3);
-heap.print();
-
-heap.insert(122);
-
-heap.print();
-
-heap.insert(11);
-heap.print();
-
-heap.insert(1);
-heap.print();
-
-heap.print();
