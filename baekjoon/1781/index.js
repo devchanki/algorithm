@@ -18,21 +18,27 @@ for (let i = 1; i <= questionCount; i++) {
 }
 
 const sortedQuestionInfo = questionInfo.sort((a, b) => {
-  if (a.cupNoodle > b.cupNoodle) return -1;
-  else if (a.cupNoodle === b.cupNoodle) return a.deadline - b.deadline;
-  else return 1;
+  return a.deadline - b.deadline;
 });
 
-let currentDeadLine = -1;
+const minHeap = new MinHeap();
+
 let answer = 0;
 for (let i = 0; i < sortedQuestionInfo.length; i++) {
-  if (currentDeadLine >= sortedQuestionInfo[i].deadline) continue;
+  const { cupNoodle, deadline } = sortedQuestionInfo[i];
+  if (minHeap.getSize() < deadline) {
+    minHeap.insert(cupNoodle);
+    continue;
+  }
+  if (minHeap.peek() < cupNoodle) {
+    minHeap.pop();
+    minHeap.insert(cupNoodle);
+  }
+}
 
-  answer += sortedQuestionInfo[i].cupNoodle;
-  console.log(answer, sortedQuestionInfo[i].cupNoodle);
-  currentDeadLine = sortedQuestionInfo[i].deadline;
+const size = minHeap.getSize();
+for (let i = 0; i < size; i++) {
+  answer += minHeap.pop();
 }
 
 console.log(answer);
-
-console.log(questionInfo, questionCount);

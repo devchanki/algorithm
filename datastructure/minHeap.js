@@ -46,6 +46,10 @@ class MinHeap {
     }
   }
 
+  peek() {
+    return this.heap[0] || null;
+  }
+
   pop() {
     if (this.getSize() <= 2) return this.heap.shift();
 
