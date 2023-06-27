@@ -47,7 +47,7 @@ class MinHeap {
   }
 
   pop() {
-    if (this.getSize() <= 2) return this.heap.pop();
+    if (this.getSize() <= 2) return this.heap.shift();
 
     // 맨 처음것과 맨 마지막 요소 swap
     this.swap(0, this.getSize() - 1);
@@ -77,3 +77,5 @@ class MinHeap {
     return value;
   }
 }
+
+module.exports = MinHeap;
