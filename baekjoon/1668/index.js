@@ -8,31 +8,30 @@ const input =
         .toString()
         .split("\n");
 
-const count = parseInt(input[0]);
-const trophyHeight = [];
+const [row, column] = input[0].split(" ").map((el) => parseInt(el));
+const matrix = [];
 
-for (let i = 1; i <= count; i++) {
-  trophyHeight.push(parseInt(input[i]));
+for (let r = 0; r < row; r++) {
+  matrix.push(input[r + 1].trim().split(""));
 }
 
-let left = 0;
-let right = 0;
-let currentMax = -1;
+const rowStatus = new Array(row).fill(false);
+const columnStatus = new Array(column).fill(false);
 
-for (let i = 0; i < count; i++) {
-  if (trophyHeight[i] > currentMax) {
-    currentMax = trophyHeight[i];
-    left++;
+for (let r = 0; r < row; r++) {
+  for (let c = 0; c < column; c++) {
+    if (matrix[r][c] === "X") {
+      rowStatus[r] = true;
+      columnStatus[c] = true;
+    }
   }
 }
 
-currentMax = -1;
-for (let i = count - 1; i >= 0; i--) {
-  if (trophyHeight[i] > currentMax) {
-    right++;
-    currentMax = trophyHeight[i];
-  }
-}
+console.log(rowStatus, columnStatus);
 
-console.log(left);
-console.log(right);
+console.log(
+  Math.max(
+    rowStatus.filter((el) => !el).length,
+    columnStatus.filter((el) => !el).length
+  )
+);
