@@ -3,10 +3,7 @@
 const input =
   process.platform === "linux"
     ? require("fs").readFileSync("/dev/stdin").toString().split("\n")
-    : require("fs")
-        .readFileSync("./baekjoon/1092/input.txt")
-        .toString()
-        .split("\n");
+    : require("fs").readFileSync("./input.txt").toString().split("\n");
 
 const craneNumber = parseInt(input[0]);
 const craneList = input[1]

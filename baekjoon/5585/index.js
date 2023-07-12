@@ -3,10 +3,7 @@
 const input =
   process.platform === "linux"
     ? require("fs").readFileSync("/dev/stdin").toString().split("\n")
-    : require("fs")
-        .readFileSync("./baekjoon/5585/input.txt")
-        .toString()
-        .split("\n");
+    : require("fs").readFileSync("./input.txt").toString().split("\n");
 
 const coinList = [500, 100, 50, 10, 5, 1];
 const money = 1000 - parseInt(input[0]);

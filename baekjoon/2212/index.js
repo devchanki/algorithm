@@ -3,10 +3,7 @@
 const input =
   process.platform === "linux"
     ? require("fs").readFileSync("/dev/stdin").toString().split("\n")
-    : require("fs")
-        .readFileSync("./baekjoon/2212/input.txt")
-        .toString()
-        .split("\n");
+    : require("fs").readFileSync("./input.txt").toString().split("\n");
 
 // 1 3 6 6 7 9
 

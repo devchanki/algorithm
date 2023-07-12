@@ -4,10 +4,7 @@
 const input =
   process.platform === "linux"
     ? require("fs").readFileSync("/dev/stdin").toString().split("\n")
-    : require("fs")
-        .readFileSync("./baekjoon/1939/input.txt")
-        .toString()
-        .split("\n");
+    : require("fs").readFileSync("./input.txt").toString().split("\n");
 const [island, bridge] = input[0].split(" ").map((el) => parseInt(el));
 const graph = {};
 const bfs = (start, end, weight) => {

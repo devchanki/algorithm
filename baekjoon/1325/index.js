@@ -3,10 +3,7 @@
 const input =
   process.platform === "linux"
     ? require("fs").readFileSync("/dev/stdin").toString().split("\n")
-    : require("fs")
-        .readFileSync("./baekjoon/1325/input.txt")
-        .toString()
-        .split("\n");
+    : require("fs").readFileSync("./input.txt").toString().split("\n");
 
 const [N, M] = input[0].split(" ").map((el) => parseInt(el));
 const graph = [...new Array(N + 1)].map((el) => []);
