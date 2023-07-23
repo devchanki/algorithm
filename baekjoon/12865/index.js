@@ -24,4 +24,4 @@ for (let i = 1; i < N + 1; i++) {
   }
 }
 
-console.log(memorized, memorized[N][K]);
+console.log(memorized[N][K]);
