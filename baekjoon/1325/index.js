@@ -1,3 +1,5 @@
+// 그래프를 객체로 만들었는데, 그것때문에 통과하지 못했었음
+
 const input =
   process.platform === "linux"
     ? require("fs").readFileSync("/dev/stdin").toString().split("\n")
