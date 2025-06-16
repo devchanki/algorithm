@@ -7,7 +7,6 @@ const [N] = input[0].split(" ").map((el) => parseInt(el));
 const data = []
 
 let index = 1
-
 class MinHeap {
   constructor() {
     this.data = [];
@@ -91,6 +90,7 @@ class MinHeap {
 
   }
 }
+
 
 const dijkstra = (graphInfo) => {
 
